@@ -73,3 +73,46 @@ $(document).on('click', 'js-click-todo', function(){
     .closest('.js-todo_list-item').removeClass('list__item--done');
 
 });
+
+//【4. ゴミ箱アイコンを押下した際にタスクを削除する】
+// 1. ゴミ箱アイコンを押下した際にイベントを発火
+// 2. クリックしたDOM（アイコン）から辿って、list__itemのDOMを取得し、削除する
+$(document).on('click', '.js-click-trash', function(){
+
+    $(this).closest('.js-todo_list-item').fadeOut('slow', function(){
+        this.remove();
+    });
+});
+
+//【5. TODOタスクのテキストをクリックした際に入力できるようにし、修正可能にする】
+// 1. テキストを押下した際にイベントを発火
+// 2. クリックしたDOM(テキスト)を非表示にし、兄弟要素の編集エリアを表示する
+$(document).on('click', '.js-todo_list-text', function(){
+
+    if(e.keyCode === 13 && e.shiftKey === true){
+        var $this = $(this);
+        $this.hide().siblings('.js-todo_list-text').text($this.val()).show()
+            .closest('.js-todo_list-item').attr('data-text', $this.val());
+        // data属性を操作する場合、data()とattr()でのやり方がある
+        // data()は、jQueryオブジェクト内のdataに対しての操作になる
+        // attr()は、htmlオブジェクト(DOM)に対しての操作になる
+    }
+});
+
+//【6. 検索エリアに値を入力した際にタスクの中から値にマッチするタスクのみ表示させる】
+// 1. 検索エリアに入力があった際にイベントを発火
+// 2. 全てのlist__itemのDOMを取得し、一つ一つループで展開
+// 3. 値にマッチするもの以外を非表示にする
+$('.js-search').on('keyup', function(){
+    var searchText = $(this).val();
+
+    $('.js-todo_list-item').show().each(function (i, elm) {
+        var text = $(elm).data('text');
+        var regexp = new RegExp('^' + searchText);
+
+        if(text && text.match(regexp)) {
+            return true;
+        }
+        $(elm).hide();
+    });
+});
