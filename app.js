@@ -36,9 +36,9 @@ $('.js-add-todo').on('click', function(e){
     var listItem = '<li class="list__item js-todo_list-item" data-text="' + text + '">' +
         '<i class="fa fa-square-o icon-check js-click-done" aria-hidden="true"></i>' +
 
-        '<span class="js-todo_list-text">' + text + '<span>' +
+        '<span class="js-todo_list-text">' + text + '</span>' +
         '<input type="text" class="editText js-todo_listeditForm" value="' + text + '">' +
-        '<i class~"fa fa-trash icon-trash js-click-trash" aria-hiden="true"></i>' +
+        '<i class="fa fa-trash icon-trash js-click-trash" aria-hidden="true"></i>' +
         '</li>';
 
     $('.js-todo_list').prepend(listItem);
@@ -66,7 +66,7 @@ $(document).on('click', '.js-click-done', function(){
 // 3. クリックしたDOM(アイコン)にjs-click-doneのクラス名を追加し、js-click-todoのクラス名を削除する
 // 4. クリックしたDOM（アイコン）から辿って、list__itemのDOMを取得
 // 5. list__itemのクラス名をtodoのものに変更する
-$(document).on('click', 'js-click-todo', function(){
+$(document).on('click', '.js-click-todo', function(){
 
     $(this).addClass('fa-square-o').removeClass('fa-check-square')
     .addClass('js-click-done').removeClass('js-click-todo')
@@ -88,6 +88,13 @@ $(document).on('click', '.js-click-trash', function(){
 // 1. テキストを押下した際にイベントを発火
 // 2. クリックしたDOM(テキスト)を非表示にし、兄弟要素の編集エリアを表示する
 $(document).on('click', '.js-todo_list-text', function(){
+
+    $(this).hide().siblings('.js-todo_list-editForm').show();
+});
+
+// 3. 編集エリア内でkeyupしたらイベントを発火
+// 4. Shirg+Enter押したら、値をテキストにも反映し、編集エリアは非表示、テキストは表示する
+$(document).on('keyup', '.js-todo_list-text', function(){
 
     if(e.keyCode === 13 && e.shiftKey === true){
         var $this = $(this);
