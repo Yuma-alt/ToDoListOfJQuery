@@ -38,8 +38,87 @@ main{
 }
 .error{
   display: none;
-  color: #e9573E;
+  color: rgb(112, 15, 116);
 }
 .searchBox{
   width: 100%;
+  height: 40px;
+  border: 1px solid #e8e8e8;
+  /* 下記で丸みを帯びるようにしている */
+  /* border-radius: 20px; */
+  margin-bottom: 15px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.searchBox__icon{
+  width: 16px;
+  font-size: 18px;
+  margin-right: 5px;
+}
+.searchBox__input{
+  /* 枠に収まるように */
+  width: calc(100% - 30px);
+  height: 100%;
+  /* borderでnoneを設定することで、枠を消す */
+  border: none;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+.list{
+  /* 下記を設定することで、「・」を消すことができる */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list__item{
+  /* 要検証 */
+  overflow: hidden;
+  padding: 15px 15px;
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  /* 下記を設定しないと、動きが堅くなる */
+  transition: .5s transform;
+}
+.list__item:hover{
+  /* カーソル合わせた時に浮くような形にできる */
+  transform: scale(1.02);
+  /* 不要？ */
+  transition: .5s transform;
+}
+.list__item--done{
+  background: #d8d8d8;
+  color: #888;
+}
+.icon-square, .icon-check, .icon-sort, .icon-trash{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.icon-square:hover, .icon-check:hover, .icon-sort:hover, .icon-trash:hover{
+  transform: scale(1.2);
+  transition: .5s transform;
+}
+.icon-trash{
+  float: right;
+  top: 4px;
+  /* TODOタスクの文字と平行になるように */
+  position: relative;
+  color: rgb(112, 15, 116)
+}
+.icon-square, .icon-check{
+  /* 間隔を空ける */
+  margin-right: 15px;
+}
+.editText{
+  /* テキストボックスを非表示にする */
+  display: none;
+  width: 80%;
+  height: 100%;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
 }
