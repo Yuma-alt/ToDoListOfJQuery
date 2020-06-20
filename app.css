@@ -1,0 +1,45 @@
+body{
+    background: #629f9e;
+    color: #333;
+  }
+main{
+  width: 400px;
+  margin: 100px auto;
+}
+.form{
+  text-align: right;
+  margin-bottom: 30px;
+}
+.inputArea{
+  margin-bottom: 15px;
+}
+.inputText{
+  padding: 5px;
+  height: 40px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #e8e8e8;
+}
+
+.btn{
+  padding: 5px 30px;
+  background: #000;
+  color: #fff;
+  border: none;
+  /* text-alignとmarginは必要無ければ消す */
+  text-align: right;
+  margin: 0;
+  font-size: 16px;
+}
+.btn:hover{
+  cursor: pointer;
+}
+.error{
+  display: none;
+  color: #e9573E;
+}
+.searchBox{
+  width: 100%;
+}
